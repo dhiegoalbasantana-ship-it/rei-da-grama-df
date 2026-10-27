@@ -3,14 +3,14 @@
  * Número 1 de Brasília em Vendas 🌱👑
  */
 
-// Banco de Dados Técnico Completo das 5 Variedades do Rei da Grama DF
+// Banco de Dados Técnico Completo das 5 Variedades do Rei da Grama DF (Fotos Reais)
 const SPECIES_DATA = {
   'bermudas': {
     name: 'Bermudas Celebration',
     heroBadge: 'CELEBRATION',
     heroBadgeSub: 'Bermudagrass™ • Cultivar: Rileys Super Sport',
     heroDesc: 'A variedade preferida dos principais estádios, arenas esportivas e chácaras de Brasília. Máxima tolerância ao pisoteio e regeneração ultrarrápida.',
-    image: 'https://images.unsplash.com/photo-1592417817098-8f3d6910985b?auto=format&fit=crop&w=800&q=80',
+    image: 'images/bermudas-celebration.jpg',
     popularName: 'Celebration ou Bermudas',
     scientificName: 'Cynodon dactylon (L.) Pers.',
     family: 'Poaceae',
@@ -31,7 +31,7 @@ const SPECIES_DATA = {
     heroBadge: 'ESMERALDA IMPERIAL',
     heroBadgeSub: 'Zoysia japonica • Padrão Ouro Brasília',
     heroDesc: 'A espécie mais vendida do Distrito Federal. Excelente relação de custo-benefício, folhas macias e alta resistência ao sol pleno do cerrado.',
-    image: 'https://images.unsplash.com/photo-1584473457406-6240486418e9?auto=format&fit=crop&w=800&q=80',
+    image: 'images/esmeralda-imperial.jpg',
     popularName: 'Esmeralda ou Imperial',
     scientificName: 'Zoysia japonica Steud.',
     family: 'Poaceae',
@@ -52,7 +52,7 @@ const SPECIES_DATA = {
     heroBadge: 'SÃO CARLOS PLUS',
     heroBadgeSub: 'Axonopus compressus • Resistente à Sombra',
     heroDesc: 'A solução definitiva para jardins em Brasília que possuem sombras de árvores, muros altos ou beirais de telhado onde o sol não bate o dia todo.',
-    image: 'https://images.unsplash.com/photo-1557429287-b2e26467fc2b?auto=format&fit=crop&w=800&q=80',
+    image: 'images/sao-carlos-plus.jpg',
     popularName: 'São Carlos ou Grama-Curitibana',
     scientificName: 'Axonopus compressus (Sw.) P.Beauv.',
     family: 'Poaceae',
@@ -73,7 +73,7 @@ const SPECIES_DATA = {
     heroBadge: 'ZEON ZOYSIA',
     heroBadgeSub: 'Zoysia matrella • Padrão Resort de Luxo',
     heroDesc: 'A "grama descalça" de Brasília. Densidade imbatível, toque suave de veludo e crescimento vertical lento que exige muito menos cortes ao longo do ano.',
-    image: 'https://images.unsplash.com/photo-1558904541-efa8c4a5697b?auto=format&fit=crop&w=800&q=80',
+    image: 'images/zeon-zoysia.jpg',
     popularName: 'Zeon Zoysia',
     scientificName: 'Zoysia matrella (L.) Merr.',
     family: 'Poaceae',
@@ -94,7 +94,7 @@ const SPECIES_DATA = {
     heroBadge: 'BATATAIS TAPETE',
     heroBadgeSub: 'Paspalum notatum • Rústica e Contenção',
     heroDesc: 'Máxima rusticidade para terrenos inclinados, taludes, contenção de erosões, beiras de estradas e chácaras com solo pobre no Distrito Federal.',
-    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80',
+    image: 'images/batatais-tapete.jpg',
     popularName: 'Batatais, Gramão ou Mato-Grosso',
     scientificName: 'Paspalum notatum Flüggé',
     family: 'Poaceae',
@@ -174,6 +174,27 @@ function initSpeciesTabs() {
 
       // Sincroniza a calculadora
       syncCalculatorGrass(speciesKey);
+    });
+  });
+
+  // Botões nos Cards do Catálogo Fotográfico
+  document.querySelectorAll('.btn-select-card-species').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const speciesKey = btn.getAttribute('data-species');
+      tabs.forEach(t => {
+        if (t.getAttribute('data-species') === speciesKey) {
+          t.classList.add('active', 'bg-itoGreen', 'text-white');
+          t.classList.remove('bg-white', 'text-itoBlue');
+        } else {
+          t.classList.remove('active', 'bg-itoGreen', 'text-white');
+          t.classList.add('bg-white', 'text-itoBlue');
+        }
+      });
+      applySpeciesView(speciesKey);
+      syncCalculatorGrass(speciesKey);
+
+      const charElem = document.getElementById('caracteristicas');
+      if (charElem) charElem.scrollIntoView({ behavior: 'smooth' });
     });
   });
 }

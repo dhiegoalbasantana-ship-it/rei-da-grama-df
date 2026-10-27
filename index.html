@@ -160,7 +160,7 @@
             <div class="absolute inset-0 rounded-full border-[10px] sm:border-[14px] border-white/90 shadow-2xl overflow-hidden p-2 bg-white/20 backdrop-blur-sm">
               <div class="w-full h-full rounded-full overflow-hidden relative">
                 <!-- Foto Macro em Close da Grama Verdejante -->
-                <img id="hero-macro-image" src="https://images.unsplash.com/photo-1592417817098-8f3d6910985b?auto=format&fit=crop&w=800&q=80" alt="Grama Bermudas Celebration Close" class="w-full h-full object-cover transform hover:scale-110 transition duration-700">
+                <img id="hero-macro-image" src="images/destaque-principal.jpg" alt="Grama Bermudas Celebration Close" class="w-full h-full object-cover transform hover:scale-110 transition duration-700">
                 <div class="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-transparent"></div>
               </div>
             </div>
@@ -244,21 +244,26 @@
         </div>
 
         <!-- Abas de troca rápida das espécies -->
-        <div class="flex flex-wrap items-center gap-2" id="species-tab-bar">
-          <button class="species-tab active bg-itoGreen text-white font-heading font-bold text-xs uppercase px-4 py-2.5 rounded-lg shadow-sm transition" data-species="bermudas">
-            Bermudas Celebration (R$ 25/m²)
+        <div class="flex flex-wrap items-center gap-2.5" id="species-tab-bar">
+          <button class="species-tab active bg-itoGreen text-white font-heading font-bold text-xs uppercase px-3.5 py-2 rounded-xl shadow-sm transition flex items-center gap-2" data-species="bermudas">
+            <img src="images/bermudas-celebration.jpg" alt="Bermudas" class="w-6 h-6 rounded-full object-cover border border-white">
+            <span>Bermudas Celebration (R$ 25/m²)</span>
           </button>
-          <button class="species-tab bg-white hover:bg-slate-50 text-itoBlue font-heading font-bold text-xs uppercase px-4 py-2.5 rounded-lg border border-slate-300 transition" data-species="esmeralda">
-            Esmeralda Imperial (R$ 15/m²)
+          <button class="species-tab bg-white hover:bg-slate-50 text-itoBlue font-heading font-bold text-xs uppercase px-3.5 py-2 rounded-xl border border-slate-300 transition flex items-center gap-2" data-species="esmeralda">
+            <img src="images/esmeralda-imperial.jpg" alt="Esmeralda" class="w-6 h-6 rounded-full object-cover border border-slate-300">
+            <span>Esmeralda Imperial (R$ 15/m²)</span>
           </button>
-          <button class="species-tab bg-white hover:bg-slate-50 text-itoBlue font-heading font-bold text-xs uppercase px-4 py-2.5 rounded-lg border border-slate-300 transition" data-species="sao-carlos">
-            São Carlos Plus (R$ 25/m²)
+          <button class="species-tab bg-white hover:bg-slate-50 text-itoBlue font-heading font-bold text-xs uppercase px-3.5 py-2 rounded-xl border border-slate-300 transition flex items-center gap-2" data-species="sao-carlos">
+            <img src="images/sao-carlos-plus.jpg" alt="São Carlos" class="w-6 h-6 rounded-full object-cover border border-slate-300">
+            <span>São Carlos Plus (R$ 25/m²)</span>
           </button>
-          <button class="species-tab bg-white hover:bg-slate-50 text-itoBlue font-heading font-bold text-xs uppercase px-4 py-2.5 rounded-lg border border-slate-300 transition" data-species="zeon">
-            Zeon Zoysia (R$ 25/m²)
+          <button class="species-tab bg-white hover:bg-slate-50 text-itoBlue font-heading font-bold text-xs uppercase px-3.5 py-2 rounded-xl border border-slate-300 transition flex items-center gap-2" data-species="zeon">
+            <img src="images/zeon-zoysia.jpg" alt="Zeon Zoysia" class="w-6 h-6 rounded-full object-cover border border-slate-300">
+            <span>Zeon Zoysia (R$ 25/m²)</span>
           </button>
-          <button class="species-tab bg-white hover:bg-slate-50 text-itoBlue font-heading font-bold text-xs uppercase px-4 py-2.5 rounded-lg border border-slate-300 transition" data-species="batatais">
-            Batatais Tapete (R$ 28/m²)
+          <button class="species-tab bg-white hover:bg-slate-50 text-itoBlue font-heading font-bold text-xs uppercase px-3.5 py-2 rounded-xl border border-slate-300 transition flex items-center gap-2" data-species="batatais">
+            <img src="images/batatais-tapete.jpg" alt="Batatais" class="w-6 h-6 rounded-full object-cover border border-slate-300">
+            <span>Batatais Tapete (R$ 28/m²)</span>
           </button>
         </div>
       </div>
@@ -577,6 +582,320 @@
 
     </div>
   </section>
+  <!-- CATÁLOGO DAS 5 GRAMAS COM FOTOS REAIS DO PRODUTOR -->
+  <section class="py-20 bg-white border-t border-slate-200" id="catalogo-fotos">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-xs font-heading font-black uppercase tracking-widest text-itoGreen bg-itoGreen-soft px-3.5 py-1 rounded-full border border-itoGreen/20">
+          🌱 Fotos Reais dos Nossos Tapetes
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-heading font-black text-itoBlue mt-3">
+          Escolha a Variedade Perfeita Para o Seu Projeto
+        </h2>
+        <p class="text-slate-600 text-sm mt-2">
+          Grama fresca cortada na véspera da entrega. Clique em qualquer espécie para visualizar as características completas ou calcular o orçamento.
+        </p>
+      </div>
+
+      <!-- Grid dos 5 Tipos de Grama com Fotos Reais -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- CARD 1: Bermudas Celebration -->
+        <div class="bg-slate-50 border border-slate-200 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="relative h-60 overflow-hidden bg-slate-200">
+              <img src="images/bermudas-celebration.jpg" alt="Grama Bermudas Celebration Real" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-3 right-3 bg-itoBlue/90 backdrop-blur-md text-gold-light text-xs font-heading font-black uppercase px-3 py-1 rounded-full border border-gold-light/30">
+                Campos & Esportes ⚽
+              </span>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="font-heading font-black text-xl text-itoBlue">Bermudas Celebration</h3>
+                <span class="text-xs font-bold bg-itoGreen-soft text-itoGreen-dark px-2 py-0.5 rounded">Sol Pleno</span>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Máxima tolerância a pisoteio intenso e regeneração ultrarrápida. Folhas finas de coloração verde azulado marcante.
+              </p>
+              <div class="pt-2 border-t border-slate-200 space-y-1.5 text-xs text-slate-700">
+                <div class="flex justify-between">
+                  <span class="text-slate-500">Poda:</span>
+                  <strong>Alta (2 a 5 cm)</strong>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-500">Uso:</span>
+                  <strong>Society, Chácaras & Pets</strong>
+                </div>
+                <div class="flex justify-between items-baseline pt-2">
+                  <span class="text-xs text-slate-500 font-bold uppercase">Preço no DF:</span>
+                  <span class="text-xl font-heading font-black text-itoGreen-dark">R$ 25,00<span class="text-xs text-slate-500 font-normal">/m²</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0 flex gap-2">
+            <button type="button" class="btn-select-card-species flex-1 bg-itoGreen hover:bg-itoGreen-dark text-white font-heading font-bold text-xs uppercase py-3 rounded-xl transition text-center" data-species="bermudas">
+              Ver Detalhes Técnicos
+            </button>
+            <a href="#calculadora" class="bg-itoBlue hover:bg-itoBlue-dark text-white font-heading font-bold text-xs uppercase px-4 py-3 rounded-xl transition flex items-center justify-center">
+              <i class="fa-solid fa-calculator"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 2: Esmeralda Imperial -->
+        <div class="bg-slate-50 border border-slate-200 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="relative h-60 overflow-hidden bg-slate-200">
+              <img src="images/esmeralda-imperial.jpg" alt="Grama Esmeralda Imperial Real" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-3 right-3 bg-itoGreen-dark/90 backdrop-blur-md text-white text-xs font-heading font-black uppercase px-3 py-1 rounded-full border border-white/30">
+                Nº 1 de Brasília 👑
+              </span>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="font-heading font-black text-xl text-itoBlue">Esmeralda Imperial</h3>
+                <span class="text-xs font-bold bg-itoGreen-soft text-itoGreen-dark px-2 py-0.5 rounded">Sol Pleno</span>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                A favorita de Brasília. Folhas finas e pontiagudas, excelente custo-benefício e beleza impecável para jardins residenciais.
+              </p>
+              <div class="pt-2 border-t border-slate-200 space-y-1.5 text-xs text-slate-700">
+                <div class="flex justify-between">
+                  <span class="text-slate-500">Poda:</span>
+                  <strong>Média (2 a 3 cm)</strong>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-500">Uso:</span>
+                  <strong>Jardins, Condomínios & Piscinas</strong>
+                </div>
+                <div class="flex justify-between items-baseline pt-2">
+                  <span class="text-xs text-slate-500 font-bold uppercase">Preço no DF:</span>
+                  <span class="text-xl font-heading font-black text-itoGreen-dark">R$ 15,00<span class="text-xs text-slate-500 font-normal">/m²</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0 flex gap-2">
+            <button type="button" class="btn-select-card-species flex-1 bg-itoGreen hover:bg-itoGreen-dark text-white font-heading font-bold text-xs uppercase py-3 rounded-xl transition text-center" data-species="esmeralda">
+              Ver Detalhes Técnicos
+            </button>
+            <a href="#calculadora" class="bg-itoBlue hover:bg-itoBlue-dark text-white font-heading font-bold text-xs uppercase px-4 py-3 rounded-xl transition flex items-center justify-center">
+              <i class="fa-solid fa-calculator"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 3: São Carlos Plus -->
+        <div class="bg-slate-50 border border-slate-200 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="relative h-60 overflow-hidden bg-slate-200">
+              <img src="images/sao-carlos-plus.jpg" alt="Grama São Carlos Plus Real" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-3 right-3 bg-emerald-900/90 backdrop-blur-md text-emerald-200 text-xs font-heading font-black uppercase px-3 py-1 rounded-full border border-emerald-400/30">
+                Tolera Sombra 🌳
+              </span>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="font-heading font-black text-xl text-itoBlue">São Carlos Plus</h3>
+                <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Meia Sombra</span>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Ideal para áreas sob copas de árvores ou muros altos que recebem poucas horas de sol direto. Folhas largas e verde escuro.
+              </p>
+              <div class="pt-2 border-t border-slate-200 space-y-1.5 text-xs text-slate-700">
+                <div class="flex justify-between">
+                  <span class="text-slate-500">Poda:</span>
+                  <strong>Média a Baixa (3 a 5 cm)</strong>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-500">Uso:</span>
+                  <strong>Sob Árvores, Jardins & Chácaras</strong>
+                </div>
+                <div class="flex justify-between items-baseline pt-2">
+                  <span class="text-xs text-slate-500 font-bold uppercase">Preço no DF:</span>
+                  <span class="text-xl font-heading font-black text-itoGreen-dark">R$ 25,00<span class="text-xs text-slate-500 font-normal">/m²</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0 flex gap-2">
+            <button type="button" class="btn-select-card-species flex-1 bg-itoGreen hover:bg-itoGreen-dark text-white font-heading font-bold text-xs uppercase py-3 rounded-xl transition text-center" data-species="sao-carlos">
+              Ver Detalhes Técnicos
+            </button>
+            <a href="#calculadora" class="bg-itoBlue hover:bg-itoBlue-dark text-white font-heading font-bold text-xs uppercase px-4 py-3 rounded-xl transition flex items-center justify-center">
+              <i class="fa-solid fa-calculator"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 4: Zeon Zoysia -->
+        <div class="bg-slate-50 border border-slate-200 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="relative h-60 overflow-hidden bg-slate-200">
+              <img src="images/zeon-zoysia.jpg" alt="Grama Zeon Zoysia Real" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-3 right-3 bg-amber-900/90 backdrop-blur-md text-gold-light text-xs font-heading font-black uppercase px-3 py-1 rounded-full border border-gold-light/30">
+                Padrão Luxo ✨
+              </span>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="font-heading font-black text-xl text-itoBlue">Zeon Zoysia</h3>
+                <span class="text-xs font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded">Resort Nobre</span>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                A "grama descalça" de Brasília. Toque aveludado único, densidade alta e crescimento vertical lento (exige menos cortes).
+              </p>
+              <div class="pt-2 border-t border-slate-200 space-y-1.5 text-xs text-slate-700">
+                <div class="flex justify-between">
+                  <span class="text-slate-500">Poda:</span>
+                  <strong>Muito Baixa (1,5 a 3 cm)</strong>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-500">Uso:</span>
+                  <strong>Mansões no Lago, Resorts & Lazer</strong>
+                </div>
+                <div class="flex justify-between items-baseline pt-2">
+                  <span class="text-xs text-slate-500 font-bold uppercase">Preço no DF:</span>
+                  <span class="text-xl font-heading font-black text-itoGreen-dark">R$ 25,00<span class="text-xs text-slate-500 font-normal">/m²</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0 flex gap-2">
+            <button type="button" class="btn-select-card-species flex-1 bg-itoGreen hover:bg-itoGreen-dark text-white font-heading font-bold text-xs uppercase py-3 rounded-xl transition text-center" data-species="zeon">
+              Ver Detalhes Técnicos
+            </button>
+            <a href="#calculadora" class="bg-itoBlue hover:bg-itoBlue-dark text-white font-heading font-bold text-xs uppercase px-4 py-3 rounded-xl transition flex items-center justify-center">
+              <i class="fa-solid fa-calculator"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 5: Batatais Tapete -->
+        <div class="bg-slate-50 border border-slate-200 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col justify-between group md:col-span-2 lg:col-span-1">
+          <div>
+            <div class="relative h-60 overflow-hidden bg-slate-200">
+              <img src="images/batatais-tapete.jpg" alt="Grama Batatais Tapete Real na Lavoura" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-3 right-3 bg-stone-900/90 backdrop-blur-md text-stone-200 text-xs font-heading font-black uppercase px-3 py-1 rounded-full border border-stone-400/30">
+                Rústica & Taludes 🌾
+              </span>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="font-heading font-black text-xl text-itoBlue">Batatais Tapete</h3>
+                <span class="text-xs font-bold bg-stone-200 text-stone-800 px-2 py-0.5 rounded">Super Rústica</span>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Imbatível para controle de erosão, chácaras e taludes inclinados no DF. Raízes profundas e resistência extrema à seca.
+              </p>
+              <div class="pt-2 border-t border-slate-200 space-y-1.5 text-xs text-slate-700">
+                <div class="flex justify-between">
+                  <span class="text-slate-500">Poda:</span>
+                  <strong>Baixa a Média (3 a 6 cm)</strong>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-500">Uso:</span>
+                  <strong>Encostas, Barrancos & Chácaras</strong>
+                </div>
+                <div class="flex justify-between items-baseline pt-2">
+                  <span class="text-xs text-slate-500 font-bold uppercase">Preço no DF:</span>
+                  <span class="text-xl font-heading font-black text-itoGreen-dark">R$ 28,00<span class="text-xs text-slate-500 font-normal">/m²</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0 flex gap-2">
+            <button type="button" class="btn-select-card-species flex-1 bg-itoGreen hover:bg-itoGreen-dark text-white font-heading font-bold text-xs uppercase py-3 rounded-xl transition text-center" data-species="batatais">
+              Ver Detalhes Técnicos
+            </button>
+            <a href="#calculadora" class="bg-itoBlue hover:bg-itoBlue-dark text-white font-heading font-bold text-xs uppercase px-4 py-3 rounded-xl transition flex items-center justify-center">
+              <i class="fa-solid fa-calculator"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 6: Consultoria Rei -->
+        <div class="bg-gradient-to-br from-itoBlue-darker to-itoBlue text-white rounded-3xl p-8 flex flex-col justify-between border-2 border-itoGreen md:col-span-2 lg:col-span-1 shadow-xl">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-white/10 text-gold-light flex items-center justify-center text-2xl mb-4">
+              <i class="fa-solid fa-crown"></i>
+            </div>
+            <h3 class="font-heading font-black text-2xl text-white mb-2">Em Dúvida de Qual Grama Escolher?</h3>
+            <p class="text-xs text-slate-200 leading-relaxed">
+              O <strong>Rei da Grama DF</strong> analisa seu terreno, luminosidade e tipo de uso para indicar a espécie com o melhor custo-benefício em Brasília.
+            </p>
+          </div>
+          <div class="pt-6">
+            <a href="https://wa.me/5561999999999?text=Ol%C3%A1%2C%20Rei!%20Estou%20em%20d%C3%BAvida%20de%20qual%20grama%20escolher%20para%20meu%20lote%20em%20Bras%C3%ADlia." target="_blank" rel="noopener noreferrer" class="block text-center bg-gold hover:bg-gold-light text-itoBlue-darker font-heading font-black text-xs uppercase py-3.5 rounded-xl transition shadow-lg">
+              <i class="fa-brands fa-whatsapp text-sm mr-1"></i> Falar com o Consultor Rei
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GALERIA DE ENTREGAS E PROJETOS EM BRASÍLIA -->
+  <section class="py-20 bg-slate-100 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between mb-12 gap-4">
+        <div>
+          <span class="text-xs uppercase font-heading font-bold text-itoGreen tracking-wider">Trabalhos Realizados</span>
+          <h2 class="text-3xl font-heading font-black text-itoBlue">Galeria de Entregas & Plantios no DF</h2>
+          <p class="text-slate-600 text-xs mt-1">Veja alguns dos nossos trabalhos recentes no Park Way, Lago Sul, Jardim Botânico e RA's.</p>
+        </div>
+        <a href="https://www.instagram.com/reidagrama.df/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-rose-600 text-white font-heading font-bold text-xs uppercase px-5 py-3 rounded-xl shadow-md hover:opacity-95 transition">
+          <i class="fa-brands fa-instagram text-base"></i> Siga @reidagrama.df
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+        <div class="relative rounded-2xl overflow-hidden aspect-square group shadow-sm bg-slate-300">
+          <img src="images/cena-01.jpg" alt="Entrega de Grama DF" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[11px] font-bold p-2 text-center">
+            Tapetes Frescos
+          </div>
+        </div>
+        <div class="relative rounded-2xl overflow-hidden aspect-square group shadow-sm bg-slate-300">
+          <img src="images/cena-02.jpg" alt="Plantio em Brasília" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[11px] font-bold p-2 text-center">
+            Plantio NPK + Calcário
+          </div>
+        </div>
+        <div class="relative rounded-2xl overflow-hidden aspect-square group shadow-sm bg-slate-300">
+          <img src="images/cena-03.jpg" alt="Jardim Park Way" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[11px] font-bold p-2 text-center">
+            Residencial Park Way
+          </div>
+        </div>
+        <div class="relative rounded-2xl overflow-hidden aspect-square group shadow-sm bg-slate-300">
+          <img src="images/cena-04.jpg" alt="Campo e Lazer DF" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[11px] font-bold p-2 text-center">
+            Campo Esportivo
+          </div>
+        </div>
+        <div class="relative rounded-2xl overflow-hidden aspect-square group shadow-sm bg-slate-300">
+          <img src="images/tapete-orvalho.jpg" alt="Grama com Orvalho" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[11px] font-bold p-2 text-center">
+            Grama Fresca
+          </div>
+        </div>
+        <div class="relative rounded-2xl overflow-hidden aspect-square group shadow-sm bg-slate-300">
+          <img src="images/batatais-tapete.jpg" alt="Colheita de Grama" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[11px] font-bold p-2 text-center">
+            Direto da Lavoura
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
 
   <!-- SEÇÃO ONDE UTILIZAR A GRAMA COM FUNDO DE ARENA / ESTÁDIO (EXATAMENTE COMO NO PRINT 5) -->
   <section id="utilizacao" class="relative overflow-hidden text-white py-24 min-h-[580px] flex items-center bg-slate-900">
