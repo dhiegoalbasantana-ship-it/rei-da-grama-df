@@ -1,0 +1,90 @@
+/* Estilos Personalizados - Padrão Itograss Adaptado para Rei da Grama DF */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Open+Sans:wght@400;600;700&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #334155;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Scrollbar Customizada */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #6b923d;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #587a31;
+}
+
+/* Animação Suave do Mascote Flutuante do WhatsApp */
+@keyframes mascot-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+#mascot-whatsapp-anchor {
+  animation: mascot-float 3.5s ease-in-out infinite;
+}
+
+#mascot-whatsapp-anchor:hover {
+  animation: none;
+}
+
+/* Pílulas de Características Técnicas */
+#characteristics-list .flex > div:first-child {
+  letter-spacing: 0.05em;
+}
+
+/* Seletor de Espécies - Abas Ativas */
+.species-tab.active {
+  background-color: #6b923d !important;
+  color: #ffffff !important;
+  border-color: #6b923d !important;
+  box-shadow: 0 4px 10px rgba(107, 146, 61, 0.25);
+}
+
+/* Cards da Calculadora */
+.calc-grass-card.active {
+  border-color: #6b923d !important;
+  background-color: #f2f7ec !important;
+  box-shadow: 0 4px 12px rgba(107, 146, 61, 0.15);
+}
+
+.sim-payment-card.active {
+  border-color: #6b923d !important;
+  background-color: #f2f7ec !important;
+  box-shadow: 0 4px 12px rgba(107, 146, 61, 0.15);
+}
+
+/* Ícones de Benefícios Minimalistas */
+.group:hover svg {
+  stroke: #587a31;
+}
+
+/* Barra de Cookies */
+#cookie-bar {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#cookie-bar.hidden {
+  opacity: 0;
+  transform: translateY(100%);
+  pointer-events: none;
+}
