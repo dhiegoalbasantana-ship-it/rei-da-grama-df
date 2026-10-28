@@ -17,15 +17,68 @@ const SPECIES_DATA = {
     origin: 'Estados Unidos',
     rnc: '26931',
     drought: 'Média / Alta',
-    mowingFreq: 'Alta',
+    trampling: 'Altíssima (Número 1 do Mercado Esportivo)',
+    mowingFreq: 'Alta (Crescimento Vigoroso)',
     mowingHeight: '2 a 5 cm',
     sun: 'Sol Pleno',
-    color: 'Verde Azulado',
+    color: 'Verde Azulado Vibrante',
     leaf: 'Fina',
-    usage: 'Campos Esportivos, Society & Residências',
+    usage: 'Campos Esportivos, Society & Residências com Pets',
     priceCash: 25,
-    priceCredit: 27
+    priceCredit: 27,
+
+    // 6 Vantagens e Desempenho Comprovado
+    benefits: [
+      {
+        icon: 'fa-shoe-prints',
+        title: 'MELHOR RESISTÊNCIA AO PISOTEIO DO MERCADO',
+        desc: 'Suporta tráfego esportivo diário e pisoteio intenso sem perder o viço e a densidade.'
+      },
+      {
+        icon: 'fa-seedling',
+        title: 'RÁPIDO CRESCIMENTO E FECHAMENTO',
+        desc: 'Enraíza com vigor no solo de Brasília formando rapidamente um tapete verde compacto.'
+      },
+      {
+        icon: 'fa-futbol',
+        title: 'EXCELENTE SUPERFÍCIE PARA JOGOS ESPORTIVOS',
+        desc: 'Padrão adotado nos principais estádios da Copa, centros de treinamento e arenas do DF.'
+      },
+      {
+        icon: 'fa-rotate-right',
+        title: 'RECUPERAÇÃO MAIS RÁPIDA DO MERCADO',
+        desc: 'Capacidade de autorregeneração ímpar após partidas de futebol e eventos ao ar livre.'
+      },
+      {
+        icon: 'fa-circle-half-stroke',
+        title: 'MELHOR DESEMPENHO EM SOMBRA ENTRE BERMUDAS',
+        desc: 'Maior tolerância a sombreamento parcial quando comparada às demais variedades de Bermudas.'
+      },
+      {
+        icon: 'fa-award',
+        title: 'ADAPTAÇÃO TOTAL AO CLIMA DE BRASÍLIA',
+        desc: 'Resiste perfeitamente à alta insolação do Planalto Central mantendo a cor viva.'
+      }
+    ],
+
+    // Onde Utilizar
+    usageSection: {
+      badgeTitle: 'CELEBRATION BERMUDAGRASS™',
+      badgeSubtitle: 'HOME • COMMERCIAL • SPORTS • CAMPEÃ DE RESISTÊNCIA',
+      badgeIcon: 'fa-trophy',
+      description: 'Trata-se da variedade com maior capacidade de utilização em jogos do mercado, pois é entre as Bermudas a mais rápida em crescimento e recuperação. Produz uma excelente superfície de jogo como observado nas principais arenas esportivas do Brasil e condomínios de alto padrão do DF. Ideal para:',
+      items: [
+        'CAMPOS DE FUTEBOL PROFISSIONAL E ESTÁDIOS',
+        'CAMPOS DE FUTEBOL AMADORES, SOCIETY E POLIESPORTIVOS',
+        'FAIRWAYS DE GOLFE, HIPISMO E CAMPOS DE POLO',
+        'PLAYGROUNDS E ÁREAS COMUNS DE CONDOMÍNIOS DO DF',
+        'JARDINS RESIDENCIAIS COM CÃES E ALTO TRÁFEGO',
+        'CHÁCARAS DE LAZER E ESPAÇOS DE EVENTOS EM BRASÍLIA'
+      ],
+      bgImage: 'images/campo-futebol-aberto.jpg'
+    }
   },
+
   'esmeralda': {
     name: 'Esmeralda Imperial',
     heroBadge: 'ESMERALDA IMPERIAL',
@@ -37,58 +90,211 @@ const SPECIES_DATA = {
     family: 'Poaceae',
     origin: 'Japão / Leste Asiático',
     rnc: '00329',
-    drought: 'Alta (após enraizada)',
-    mowingFreq: 'Média',
+    drought: 'Alta (após bem enraizada)',
+    trampling: 'Média a Alta',
+    mowingFreq: 'Média (Pouca manutenção no ano)',
     mowingHeight: '2 a 3 cm',
     sun: 'Sol Pleno (mínimo 4h a 5h diárias)',
     color: 'Verde Esmeralda Brilhante',
     leaf: 'Fina e Macia',
-    usage: 'Jardins Residenciais, Condomínios e Encostas',
+    usage: 'Jardins Residenciais, Condomínios e Encostas Suaves',
     priceCash: 15,
-    priceCredit: 17
+    priceCredit: 17,
+
+    benefits: [
+      {
+        icon: 'fa-hand-holding-dollar',
+        title: 'MELHOR CUSTO-BENEFÍCIO DE BRASÍLIA',
+        desc: 'Preço mais competitivo do mercado com visual nobre de gramado cinematográfico.'
+      },
+      {
+        icon: 'fa-sun',
+        title: 'MÁXIMA RESISTÊNCIA AO SOL PLENO DO CERRADO',
+        desc: 'Desenvolve-se com vigor sob o sol forte de Brasília e resiste bem aos períodos de seca.'
+      },
+      {
+        icon: 'fa-feather-pointed',
+        title: 'FOLHAS FINAS, MACIAS E CONFORTÁVEIS',
+        desc: 'Excelente para andar descalço, ideal para quintais com crianças e piqueniques.'
+      },
+      {
+        icon: 'fa-shield-halved',
+        title: 'ALTA DENSIDADE QUE BLOQUEIA PRAGAS',
+        desc: 'Forma uma trama radicular densa que inibe o crescimento de ervas daninhas.'
+      },
+      {
+        icon: 'fa-scissors',
+        title: 'BAIXA FREQUÊNCIA DE CORTES',
+        desc: 'Crescimento vertical comedido, reduzindo drasticamente custos e tempo com podas.'
+      },
+      {
+        icon: 'fa-droplet-slash',
+        title: 'EXCELENTE TOLERÂNCIA À ESTIAGEM',
+        desc: 'Raízes firmes que armazenam umidade e recuperam o verde vivo logo após a irrigação.'
+      }
+    ],
+
+    usageSection: {
+      badgeTitle: 'ESMERALDA IMPERIAL CERRADO',
+      badgeSubtitle: 'RESIDENCIAL • CONDOMÍNIOS • LAGO SUL & PARK WAY',
+      badgeIcon: 'fa-gem',
+      description: 'A grama Esmeralda Imperial é a líder absoluta de vendas e preferência no Distrito Federal. Por formar um tapete uniforme, macio e de estética impecável, é a opção favorita de residências no Lago Sul, Park Way, Jardim Botânico e condomínios fechados do DF. Ideal para:',
+      items: [
+        'JARDINS RESIDENCIAIS NO LAGO SUL, LAGO NORTE E PARK WAY',
+        'ÁREAS VERDES E FACHADAS DE CONDOMÍNIOS FECHADOS',
+        'ENTORNO DE PISCINAS, DECKS DE LAZER E ÁREAS GOURMET',
+        'PRAÇAS, PARQUES E ÁREAS RECREATIVAS NO DF',
+        'TALUDES E ENCOSTAS COM INCLINAÇÃO MODERADA',
+        'SEDES EMPRESARIAIS, CLUBES E CHÁCARAS NO DISTRITO FEDERAL'
+      ],
+      bgImage: 'images/cena-03.jpg'
+    }
   },
+
   'sao-carlos': {
     name: 'São Carlos Plus',
     heroBadge: 'SÃO CARLOS PLUS',
     heroBadgeSub: 'Axonopus compressus • Resistente à Sombra',
     heroDesc: 'A solução definitiva para jardins em Brasília que possuem sombras de árvores, muros altos ou beirais de telhado onde o sol não bate o dia todo.',
     image: 'images/sao-carlos-plus.jpg',
-    popularName: 'São Carlos ou Grama-Curitibana',
+    popularName: 'São Carlos, Grama-Curitibana ou Sempre-Verde',
     scientificName: 'Axonopus compressus (Sw.) P.Beauv.',
     family: 'Poaceae',
     origin: 'América do Sul / Brasil',
     rnc: '05412',
-    drought: 'Média (exige solo fresco)',
+    drought: 'Média (aprecia solo úmido e fresco)',
+    trampling: 'Média',
     mowingFreq: 'Média a Baixa',
     mowingHeight: '3 a 5 cm',
-    sun: 'Sol Pleno ou Meia Sombra',
-    color: 'Verde Escuro Intenso',
-    leaf: 'Larga e Lisa',
-    usage: 'Áreas Sob Copas de Árvores, Jardins e Chácaras',
+    sun: 'Sol Pleno ou Meia Sombra (Sob Árvores)',
+    color: 'Verde Escuro Lustroso Intenso',
+    leaf: 'Larga, Plana e Lisa',
+    usage: 'Áreas Sombreadas, Pomares, Chácaras e Jardins',
     priceCash: 25,
-    priceCredit: 27
+    priceCredit: 27,
+
+    benefits: [
+      {
+        icon: 'fa-cloud-sun',
+        title: 'NÚMERO 1 EM RESISTÊNCIA À MEIA SOMBRA',
+        desc: 'A melhor espécie para locais onde as outras gramas enfraquecem e amarelam pela falta de sol.'
+      },
+      {
+        icon: 'fa-tree',
+        title: 'IDEAL PARA SOB COPAS DE ÁRVORES E MUROS',
+        desc: 'Mantém o chão verde e protegido mesmo sob a copa de árvores frutíferas e sombras de casas.'
+      },
+      {
+        icon: 'fa-leaf',
+        title: 'FOLHAS LARGAS E LUSTROSAS',
+        desc: 'Coloração verde esmeralda escura marcante com brilho acetinado natural.'
+      },
+      {
+        icon: 'fa-temperature-low',
+        title: 'EXCELENTE ADAPTAÇÃO AO MICROCLIMA FRESCO',
+        desc: 'Resiste muito bem a épocas mais frias e locais mais frescos de chácaras do DF.'
+      },
+      {
+        icon: 'fa-wand-magic-sparkles',
+        title: 'NÃO EXIGE ADUBAÇÃO INTENSIVA',
+        desc: 'Gramado com rusticidade natural que absorve e conserva muito bem os nutrientes da terra.'
+      },
+      {
+        icon: 'fa-shield',
+        title: 'EXCELENTE COBERTURA DE SOLO',
+        desc: 'Sistema estolonífero forte que recobre e protege o solo fértil contra enxurradas.'
+      }
+    ],
+
+    usageSection: {
+      badgeTitle: 'SÃO CARLOS PLUS MEIA SOMBRA',
+      badgeSubtitle: 'JARDINS SOMBREADOS • POMARES • SOB COPAS • CHÁCARAS',
+      badgeIcon: 'fa-tree',
+      description: 'A Grama São Carlos Plus é a variedade indispensável para locais que não recebem sol o dia todo. Graças às suas folhas largas ricas em clorofila, ela capta luz com muito mais eficiência, mantendo o gramado denso e verdejante sob árvores, muros altos e beirais de casas de Brasília. Ideal para:',
+      items: [
+        'JARDINS COM ÁRVORES FRUTÍFERAS, POMARES E BOSQUES',
+        'ÁREAS RESIDENCIAIS COM SOMBRA DE MUROS E CASAS',
+        'CONDOMÍNIOS ARBORIZADOS NO JARDIM BOTÂNICO E PARK WAY',
+        'CHÁCARAS E SÍTIOS NO ENTORNO DO DISTRITO FEDERAL',
+        'ESPAÇOS DE RECREAÇÃO COM SOMBRA NATURAL',
+        'FACHADAS ORIENTADAS PARA O SUL OU COM POUCO SOL DIRETO'
+      ],
+      bgImage: 'images/destaque-principal.jpg'
+    }
   },
+
   'zeon': {
     name: 'Zeon Zoysia',
     heroBadge: 'ZEON ZOYSIA',
     heroBadgeSub: 'Zoysia matrella • Padrão Resort de Luxo',
     heroDesc: 'A "grama descalça" de Brasília. Densidade imbatível, toque suave de veludo e crescimento vertical lento que exige muito menos cortes ao longo do ano.',
     image: 'images/zeon-zoysia.jpg',
-    popularName: 'Zeon Zoysia',
+    popularName: 'Zeon Zoysia (Grama Aveludada)',
     scientificName: 'Zoysia matrella (L.) Merr.',
     family: 'Poaceae',
     origin: 'Estados Unidos (Bladerunner Farms)',
     rnc: '23891',
     drought: 'Alta',
-    mowingFreq: 'Muito Baixa (crescimento lento)',
+    trampling: 'Alta',
+    mowingFreq: 'Muito Baixa (Cresce devagar)',
     mowingHeight: '1,5 a 3 cm',
     sun: 'Sol Pleno a Meia Sombra Suave',
     color: 'Verde Profundo Acetinado',
-    leaf: 'Ultra Fina',
-    usage: 'Mansões no Lago Sul/Norte, Resorts e Áreas Nobres',
+    leaf: 'Ultra Fina e Densa',
+    usage: 'Mansões no Lago Sul/Norte, Resorts e Paisagismo Nobre',
     priceCash: 25,
-    priceCredit: 27
+    priceCredit: 27,
+
+    benefits: [
+      {
+        icon: 'fa-socks',
+        title: 'TOQUE AVELUDADO INCOMPARÁVEL ("GRAMA DESCALÇA")',
+        desc: 'Sensação única de pisar em um tapete persa de veludo macio, adorado por toda a família.'
+      },
+      {
+        icon: 'fa-gauge-simple-low',
+        title: 'CRESCIMENTO LENTO: MENOS CORTES NO ANO',
+        desc: 'Cresce pouco para cima, exigindo até 50% menos cortes e economizando na manutenção.'
+      },
+      {
+        icon: 'fa-layer-group',
+        title: 'DENSIDADE EXTREMA QUE ELIMINA DANINHAS',
+        desc: 'A malha vegetal é tão compacta que impede o nascimento e proliferação de pragas no solo.'
+      },
+      {
+        icon: 'fa-star',
+        title: 'VALORIZAÇÃO IMEDIATA DO SEU IMÓVEL',
+        desc: 'A variedade favorita dos grandes arquitetos paisagistas em mansões de Brasília.'
+      },
+      {
+        icon: 'fa-sun',
+        title: 'ALTA RESISTÊNCIA À SECA DO DF',
+        desc: 'Enraizamento vigoroso que tolera os meses de seca de Brasília com excelente resposta à água.'
+      },
+      {
+        icon: 'fa-crown',
+        title: 'PADRÃO OLÍMPICO DE RESORTS DE LUXO',
+        desc: 'A mesma grama utilizada no Campo de Golfe Olímpico do Rio e em resorts 5 estrelas.'
+      }
+    ],
+
+    usageSection: {
+      badgeTitle: 'ZEON ZOYSIA PREMIUM LUXURY',
+      badgeSubtitle: 'RESORTS DE LUXO • MANSÕES LAGO SUL & NORTE • PAISAGISMO NOBRE',
+      badgeIcon: 'fa-crown',
+      description: 'Considerada por paisagistas renomados a grama mais nobre e sofisticada do mundo. A Zeon Zoysia oferece uma densidade compacta de veludo acetinado, com folhas finíssimas e altíssimo conforto para andar descalço. É a primeira escolha de embaixadas, resorts e residências de alto padrão em Brasília. Ideal para:',
+      items: [
+        'MANSÕES E CASAS DE ALTO LUXO NO LAGO SUL E LAGO NORTE',
+        'ENTORNO DE PISCINAS SOFISTICADAS E ÁREAS GOURMET',
+        'CAMPOS DE GOLFE, TEE BOXES E RESORTS EXCLUSIVOS',
+        'JARDINS INTERNOS E PAISAGISMO CONTEMPORÂNEO',
+        'CONDOMÍNIOS FECHADOS DE ALTÍSSIMO PADRÃO NO DF',
+        'PROJETOS PAISAGÍSTICOS QUE EXIGEM O TOQUE MAIS FINO'
+      ],
+      bgImage: 'images/cena-01.jpg'
+    }
   },
+
   'batatais': {
     name: 'Batatais Tapete',
     heroBadge: 'BATATAIS TAPETE',
@@ -100,15 +306,65 @@ const SPECIES_DATA = {
     family: 'Poaceae',
     origin: 'Brasil / América Tropical',
     rnc: '00114',
-    drought: 'Altíssima',
+    drought: 'Altíssima (A mais resistente do DF)',
+    trampling: 'Altíssima (Resiste a tráfego pesado e animais)',
     mowingFreq: 'Baixa a Média',
     mowingHeight: '3 a 6 cm',
     sun: 'Sol Pleno',
     color: 'Verde Claro Rústico',
-    leaf: 'Média a Larga',
-    usage: 'Taludes, Barrancos, Chácaras e Contenção de Solo',
+    leaf: 'Média a Larga e Fibrosa',
+    usage: 'Taludes, Barrancos, Chácaras e Contenção de Erosão',
     priceCash: 28,
-    priceCredit: 30
+    priceCredit: 30,
+
+    benefits: [
+      {
+        icon: 'fa-mountain',
+        title: 'MÁXIMA RESISTÊNCIA CONTRA EROSÕES E TALUDES',
+        desc: 'Raízes profundas e grossas que seguram a terra de barrancos e encostas no DF.'
+      },
+      {
+        icon: 'fa-droplet-slash',
+        title: 'SUPORTA A SECA MAIS SEVERA DE BRASÍLIA',
+        desc: 'Sobrevive a longos períodos sem chuva, reavivando imediatamente com as primeiras chuvas.'
+      },
+      {
+        icon: 'fa-shield-halved',
+        title: 'EXTREMA RUSTICIDADE EM SOLOS POBRES',
+        desc: 'Vinga mesmo em solos vermelhos com cascalho, sem exigir adubações frequentes.'
+      },
+      {
+        icon: 'fa-truck',
+        title: 'AGUENTA PISOTEIO PESADO E ANIMAIS',
+        desc: 'Ideal para chácaras, haras e áreas com circulação de veículos e animais de grande porte.'
+      },
+      {
+        icon: 'fa-money-bill-wave',
+        title: 'BAIXÍSSIMO CUSTO DE MANUTENÇÃO',
+        desc: 'Dispensa adubações constantes e cuidados delicados, exigindo apenas podas esporádicas.'
+      },
+      {
+        icon: 'fa-seedling',
+        title: 'NATIVA E ADAPTADA AO BIOMA DO CERRADO',
+        desc: 'Plenamente aclimatada ao clima do Planalto Central há séculos.'
+      }
+    ],
+
+    usageSection: {
+      badgeTitle: 'BATATAIS TAPETE CERRADO FORTE',
+      badgeSubtitle: 'TALUDES • CONTENÇÃO • CHÁCARAS & ENTORNO DO DF',
+      badgeIcon: 'fa-mountain',
+      description: 'A grama Batatais é o verdadeiro tanque de guerra do mundo das gramas. Desenvolvida para resistir às condições mais rústicas do Distrito Federal e entorno, ela possui um enraizamento profundo que segura a terra com firmeza, sendo imbatível na contenção de encostas e barrancos de terra vermelha. Ideal para:',
+      items: [
+        'CONTENÇÃO DE TALUDES, BARRANCOS E ENCOSTAS COM EROSÃO',
+        'CHÁCARAS, SÍTIOS E FAZENDAS NO DISTRITO FEDERAL E GOIÁS',
+        'ÁREAS DE PASTAGEM, HARAS E CIRCULAÇÃO DE ANIMAIS',
+        'BEIRAS DE ESTRADAS, ATERROS E OBRAS DE INFRAESTRUTURA',
+        'GRANDES LOTES E CHÁCARAS COM POUCA DISPONIBILIDADE DE ÁGUA',
+        'TERRENOS COM SOLO POBRE, PEDREGOSO OU CASCALHO'
+      ],
+      bgImage: 'images/lavoura-tenda-azul.jpg'
+    }
   }
 };
 
@@ -199,14 +455,14 @@ function initSpeciesTabs() {
   });
 }
 
-// Atualiza todas as seções (Hero, Ficha Técnica de Características e Preços)
+// Atualiza todas as seções dinâmicas da página ao trocar de espécie
 function applySpeciesView(key) {
   const data = SPECIES_DATA[key];
   if (!data) return;
 
   currentState.speciesKey = key;
 
-  // Atualizar Hero
+  // 1. Atualizar Hero Banner Principal
   const elHeroTitle = document.getElementById('hero-specie-title');
   const elHeroBadgeTitle = document.getElementById('hero-badge-title');
   const elHeroBadgeSub = document.getElementById('hero-badge-subtitle');
@@ -217,9 +473,35 @@ function applySpeciesView(key) {
   if (elHeroBadgeTitle) elHeroBadgeTitle.textContent = data.heroBadge;
   if (elHeroBadgeSub) elHeroBadgeSub.textContent = data.heroBadgeSub;
   if (elHeroDesc) elHeroDesc.textContent = data.heroDesc;
-  if (elHeroImg) elHeroImg.src = data.image;
+  if (elHeroImg) {
+    elHeroImg.src = data.image;
+    elHeroImg.alt = `Grama ${data.name} Real`;
+  }
 
-  // Atualizar Seção de Características Técnicas (Prints 3 e 4)
+  // 2. Atualizar Grid de 6 Vantagens e Desempenho Comprovado (Print 2)
+  const elBenefitsTitle = document.getElementById('benefits-section-title');
+  if (elBenefitsTitle) {
+    elBenefitsTitle.textContent = `Vantagens Comprovadas: ${data.name}`;
+  }
+
+  const elBenefitsGrid = document.getElementById('benefits-grid');
+  if (elBenefitsGrid && data.benefits && data.benefits.length) {
+    elBenefitsGrid.innerHTML = data.benefits.map(b => `
+      <div class="flex flex-col items-center group">
+        <div class="w-20 h-20 sm:w-24 sm:h-24 mb-4 sm:mb-6 rounded-2xl bg-itoGreen-soft/50 border border-itoGreen/20 flex items-center justify-center text-itoGreen group-hover:scale-110 group-hover:bg-itoGreen group-hover:text-white transition duration-300 shadow-sm">
+          <i class="fa-solid ${b.icon} text-3xl sm:text-4xl"></i>
+        </div>
+        <h3 class="font-heading font-black text-xs sm:text-sm uppercase tracking-wider text-itoBlue max-w-[260px] leading-snug">
+          ${b.title}
+        </h3>
+        <p class="text-xs text-slate-500 mt-2 max-w-[260px] leading-relaxed">
+          ${b.desc}
+        </p>
+      </div>
+    `).join('');
+  }
+
+  // 3. Atualizar Ficha Técnica Comparativa de Características (Prints 3 e 4)
   const elCharTitle = document.getElementById('char-specie-title');
   const elPopular = document.getElementById('char-popular-name');
   const elScientific = document.getElementById('char-scientific-name');
@@ -227,6 +509,7 @@ function applySpeciesView(key) {
   const elOrigin = document.getElementById('char-origin');
   const elRnc = document.getElementById('char-rnc');
   const elDrought = document.getElementById('char-drought');
+  const elTrampling = document.getElementById('char-trampling');
   const elMowingFreq = document.getElementById('char-mowing-freq');
   const elMowingHeight = document.getElementById('char-mowing-height');
   const elSun = document.getElementById('char-sun');
@@ -242,6 +525,7 @@ function applySpeciesView(key) {
   if (elOrigin) elOrigin.textContent = data.origin;
   if (elRnc) elRnc.textContent = data.rnc;
   if (elDrought) elDrought.textContent = data.drought;
+  if (elTrampling) elTrampling.textContent = data.trampling || 'Média a Alta';
   if (elMowingFreq) elMowingFreq.textContent = data.mowingFreq;
   if (elMowingHeight) elMowingHeight.textContent = data.mowingHeight;
   if (elSun) elSun.textContent = data.sun;
@@ -249,6 +533,38 @@ function applySpeciesView(key) {
   if (elLeaf) elLeaf.textContent = data.leaf;
   if (elUsage) elUsage.textContent = data.usage;
   if (elPrice) elPrice.textContent = `${toBRL(data.priceCash)}/m² Pix • ${toBRL(data.priceCredit)}/m² Crédito`;
+
+  // 4. Atualizar Seção Onde Utilizar a Grama (Print 5)
+  if (data.usageSection) {
+    const elUtilName = document.getElementById('util-specie-name');
+    const elUtilBadgeTitle = document.getElementById('util-badge-title');
+    const elUtilBadgeSub = document.getElementById('util-badge-subtitle');
+    const elUtilBadgeIcon = document.getElementById('util-badge-icon');
+    const elUtilDesc = document.getElementById('util-desc');
+    const elUtilList = document.getElementById('util-list');
+    const elUtilBgImg = document.getElementById('util-bg-image');
+
+    if (elUtilName) elUtilName.textContent = data.name;
+    if (elUtilBadgeTitle) elUtilBadgeTitle.textContent = data.usageSection.badgeTitle;
+    if (elUtilBadgeSub) elUtilBadgeSub.textContent = data.usageSection.badgeSubtitle;
+    if (elUtilBadgeIcon && data.usageSection.badgeIcon) {
+      elUtilBadgeIcon.className = `fa-solid ${data.usageSection.badgeIcon} text-gold-light text-2xl`;
+    }
+    if (elUtilDesc) elUtilDesc.textContent = data.usageSection.description;
+
+    if (elUtilList && data.usageSection.items) {
+      elUtilList.innerHTML = data.usageSection.items.map(item => `
+        <li class="flex items-center gap-2.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-itoGreen shrink-0"></span>
+          <span>${item}</span>
+        </li>
+      `).join('');
+    }
+
+    if (elUtilBgImg && data.usageSection.bgImage) {
+      elUtilBgImg.src = data.usageSection.bgImage;
+    }
+  }
 }
 
 // Sincroniza a seleção na calculadora
