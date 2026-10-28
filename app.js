@@ -385,8 +385,8 @@ const SPECIES_DATA = {
     color: 'Verde Brilhante com Flores Amarelas',
     leaf: 'Composta por 4 folíolos ovais',
     usage: 'Forração de Jardins, Taludes, Pomares e Encostas',
-    priceCash: 25,
-    priceCredit: 27,
+    priceCash: 45,
+    priceCredit: 47,
 
     benefits: [
       {
