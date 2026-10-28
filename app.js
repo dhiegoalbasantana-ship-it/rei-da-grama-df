@@ -114,7 +114,7 @@ const SPECIES_DATA = {
 
 const PLANTING_PRICE_PER_M2 = 12; // R$ 12/m² com NPK + calcário
 const FREIGHT_PRICE_PER_KM = 10;  // R$ 10/km rodoviário ida de Brasília
-const WHATSAPP_PHONE = "5561999999999"; // Número de WhatsApp oficial do bot
+const WHATSAPP_PHONE = "5561993585376"; // Número de WhatsApp oficial do bot
 
 // Estado atual
 let currentState = {
