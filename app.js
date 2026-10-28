@@ -365,6 +365,77 @@ const SPECIES_DATA = {
       ],
       bgImage: 'images/lavoura-tenda-azul.jpg'
     }
+  },
+  'amendoim': {
+    name: 'Grama-Amendoim (Forração)',
+    heroBadge: 'GRAMA-AMENDOIM',
+    heroBadgeSub: 'Arachis repens Handro • Forração Ecológica',
+    heroDesc: 'A forração paisagística mais exuberante e sustentável do Brasil. Dispensa podas frequentes, fixa nitrogênio no solo e floresce com pequenas flores amarelo-ouro, perfeita para taludes, encostas e jardins ecológicos em Brasília.',
+    image: 'images/grama-amendoim.jpg',
+    popularName: 'Grama-Amendoim ou Amendoim Rasteiro',
+    scientificName: 'Arachis repens Handro',
+    family: 'Fabaceae (Leguminosae)',
+    origin: 'Nativa do Brasil (Cerrado e América do Sul)',
+    rnc: 'Forração Certificada',
+    drought: 'Alta (raízes profundas de 0,30 m a 1,80 m)',
+    trampling: 'Baixo a Moderado (Indicada para Forração)',
+    mowingFreq: 'Não necessita de poda!',
+    mowingHeight: '0,10 a 0,25 m (até 30 cm)',
+    sun: 'Sol Pleno a Meia-Sombra',
+    color: 'Verde Brilhante com Flores Amarelas',
+    leaf: 'Composta por 4 folíolos ovais',
+    usage: 'Forração de Jardins, Taludes, Pomares e Encostas',
+    priceCash: 25,
+    priceCredit: 27,
+
+    benefits: [
+      {
+        icon: 'fa-scissors',
+        title: 'DISPENSA PODAS E CORTES REGULARES',
+        desc: 'Cresce rasteira mantendo porte compacto de 10 a 25 cm, economizando mão de obra e tempo.'
+      },
+      {
+        icon: 'fa-spa',
+        title: 'FLORAÇÃO AMARELO-OURO ENCANTADORA',
+        desc: 'Pequenas flores em formato de borboleta (1,5 a 2 cm) que colorem o jardim com elegância.'
+      },
+      {
+        icon: 'fa-mountain',
+        title: 'RAÍZES PROFUNDAS: PERFEITA PARA TALUDES',
+        desc: 'Raízes pivotantes que atingem de 0,30 m até 1,80 m, excelente para conter encostas contra erosão.'
+      },
+      {
+        icon: 'fa-leaf',
+        title: 'FIXAÇÃO BIOLÓGICA DE NITROGÊNIO',
+        desc: 'Leguminosa que enriquece naturalmente o solo, servindo como adubação verde em pomares e canteiros.'
+      },
+      {
+        icon: 'fa-droplet-slash',
+        title: 'ALTA RESISTÊNCIA À SECA DO CERRADO',
+        desc: 'Suporta os períodos secos de Brasília sem perder a vitalidade graças ao enraizamento profundo.'
+      },
+      {
+        icon: 'fa-seedling',
+        title: 'NATIVA DO BRASIL E DO CERRADO',
+        desc: 'Perfeitamente adaptada ao bioma e às condições climáticas do Distrito Federal.'
+      }
+    ],
+
+    usageSection: {
+      badgeTitle: 'ARACHIS REPENS HANDRO',
+      badgeSubtitle: 'FORRAÇÃO ECOLÓGICA • PAISAGISMO SUSTENTÁVEL • TALUDES',
+      badgeIcon: 'fa-spa',
+      description: 'A grama-amendoim (Arachis repens) é uma leguminosa rasteira e perene, muito utilizada no paisagismo ecológico como forração nobre. Além da beleza de suas flores amarelo-ouro, ela atua como protetora do solo contra enxurradas e enriquece a terra fixando nitrogênio. Ideal para:',
+      items: [
+        'FORRAÇÃO PAISAGÍSTICA DE JARDINS E CANTEIROS',
+        'CONTENÇÃO DE TALUDES, BARRANCOS E ENCOSTAS COM EROSÃO',
+        'ÁREAS SOB MEIA-SOMBRA OU SOL PLENO EM BRASÍLIA',
+        'POMARES E CULTIVOS AGRÍCOLAS (FIXAÇÃO DE NITROGÊNIO)',
+        'JARDINS RESIDENCIAIS DE BAIXA MANUTENÇÃO (SEM PODA)',
+        'CONDOMÍNIOS FECHADOS E PROJETOS PAISAGÍSTICOS ECOLÓGICOS'
+      ],
+      bgImage: 'images/grama-amendoim.jpg'
+    }
   }
 };
 
