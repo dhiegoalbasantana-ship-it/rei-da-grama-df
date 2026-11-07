@@ -1226,7 +1226,7 @@
                   <span class="block font-heading font-black text-sm text-itoBlue">Bermudas Celebration</span>
                   <span class="text-[11px] text-slate-500">Campos & Alta Resistência</span>
                 </div>
-                <span class="font-heading font-black text-xs bg-white text-itoGreen-dark px-2 py-1 rounded shadow-sm">R$ 25/m²</span>
+                <span class="font-heading font-black text-xs bg-white text-itoGreen-dark px-2 py-1 rounded shadow-sm">R$ 30/m²</span>
               </label>
 
               <label class="calc-grass-card p-3 rounded-xl border-2 border-slate-200 bg-white cursor-pointer flex items-center justify-between transition">
@@ -1235,7 +1235,7 @@
                   <span class="block font-heading font-black text-sm text-itoBlue">Esmeralda Imperial</span>
                   <span class="text-[11px] text-slate-500">Mais Vendida • Sol Pleno</span>
                 </div>
-                <span class="font-heading font-black text-xs bg-slate-100 text-slate-700 px-2 py-1 rounded">R$ 15/m²</span>
+                <span class="font-heading font-black text-xs bg-slate-100 text-slate-700 px-2 py-1 rounded">R$ 18/m²</span>
               </label>
 
               <label class="calc-grass-card p-3 rounded-xl border-2 border-slate-200 bg-white cursor-pointer flex items-center justify-between transition">
@@ -1327,25 +1327,49 @@
             </label>
           </div>
 
-          <!-- Região de Entrega no DF -->
+          <!-- Endereço Real de Entrega e CEP -->
           <div>
-            <label for="sim-region" class="block text-xs font-heading font-bold uppercase tracking-wider text-itoBlue mb-2 flex items-center justify-between">
-              <span>4. Região de Entrega no Distrito Federal:</span>
-              <span class="text-slate-500 font-normal normal-case text-[11px]">Frete: R$ 10/km</span>
+            <label class="block text-xs font-heading font-bold uppercase tracking-wider text-itoBlue mb-2 flex items-center justify-between">
+              <span>4. Endereço Real de Entrega e CEP:</span>
+              <span class="text-slate-500 font-normal normal-case text-[11px]">Frete Rodoviário: R$ 10/km</span>
             </label>
-            <select id="sim-region" class="w-full text-xs font-heading font-bold text-slate-800 bg-slate-50 border-2 border-slate-300 focus:border-itoGreen rounded-xl p-3 outline-none transition">
-              <option value="retirada" data-km="0">Retirada na base em Brasília (Sem frete)</option>
-              <option value="smpw" data-km="6" selected>Park Way / SMPW (~6 km - R$ 60)</option>
-              <option value="lagosul" data-km="14">Lago Sul / Jardim Botânico (~14 km - R$ 140)</option>
-              <option value="planopiloto" data-km="18">Plano Piloto (Asa Sul / Asa Norte) (~18 km - R$ 180)</option>
-              <option value="lagonorte" data-km="24">Lago Norte / Taquari (~24 km - R$ 240)</option>
-              <option value="aguasclaras" data-km="18">Águas Claras / Arniqueira (~18 km - R$ 180)</option>
-              <option value="vicentepires" data-km="23">Vicente Pires (~23 km - R$ 230)</option>
-              <option value="taguatinga" data-km="22">Taguatinga / Ceilândia (~22 km - R$ 220)</option>
-              <option value="sobradinho" data-km="38">Sobradinho / Condomínios (~38 km - R$ 380)</option>
-              <option value="gama" data-km="19">Gama / Santa Maria (~19 km - R$ 190)</option>
-              <option value="outra" data-km="25">Outra Região DF / Entorno (~25 km estimado)</option>
-            </select>
+
+            <div class="grid grid-cols-2 gap-2.5 mb-3">
+              <label class="sim-fulfillment-card p-2.5 rounded-xl border-2 border-itoGreen bg-itoGreen-soft cursor-pointer text-center transition">
+                <input type="radio" name="sim-fulfillment" value="delivery" checked class="sr-only">
+                <span class="block font-heading font-bold text-xs text-itoBlue"><i class="fa-solid fa-truck-fast mr-1"></i> Entrega no Meu Endereço</span>
+                <span class="text-[10px] text-itoGreen-dark font-semibold">DF e Goiás (R$ 10/km)</span>
+              </label>
+
+              <label class="sim-fulfillment-card p-2.5 rounded-xl border-2 border-slate-200 bg-white cursor-pointer text-center transition">
+                <input type="radio" name="sim-fulfillment" value="pickup" class="sr-only">
+                <span class="block font-heading font-bold text-xs text-itoBlue"><i class="fa-solid fa-warehouse mr-1"></i> Retirar na Base DF</span>
+                <span class="text-[10px] text-slate-500">Park Way / SMPW (Sem frete)</span>
+              </label>
+            </div>
+
+            <div id="sim-delivery-fields" class="space-y-3 bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+              <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+                <div class="sm:col-span-4">
+                  <label for="sim-cep" class="block text-[11px] font-heading font-bold text-itoBlue uppercase mb-1">CEP da Entrega:</label>
+                  <input type="text" id="sim-cep" maxlength="9" placeholder="Ex: 71735-400" class="w-full text-xs font-heading font-bold text-slate-800 bg-white border-2 border-slate-300 focus:border-itoGreen rounded-xl p-2.5 outline-none transition">
+                </div>
+                <div class="sm:col-span-8">
+                  <label for="sim-address" class="block text-[11px] font-heading font-bold text-itoBlue uppercase mb-1">Endereço Completo (Rua/Quadra, Lote/Nº, Bairro, Cidade/UF):</label>
+                  <input type="text" id="sim-address" placeholder="Ex: SMPW Quadra 4 Conjunto 4 Lote 5, Park Way, Brasília - DF" class="w-full text-xs font-heading font-bold text-slate-800 bg-white border-2 border-slate-300 focus:border-itoGreen rounded-xl p-2.5 outline-none transition">
+                </div>
+              </div>
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 pt-1">
+                <div id="sim-route-status" class="text-[11px] text-slate-600 flex items-center gap-1.5">
+                  <i class="fa-solid fa-location-dot text-itoGreen"></i>
+                  <span>Preencha seu endereço real e CEP para calcular o frete exato por GPS</span>
+                </div>
+                <button type="button" id="sim-btn-calc-freight" class="shrink-0 bg-itoBlue hover:bg-itoBlue-dark text-white font-heading font-bold text-[11px] uppercase px-3.5 py-2 rounded-lg transition flex items-center justify-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-route text-gold-light"></i>
+                  <span>Calcular Frete pelo Endereço</span>
+                </button>
+              </div>
+            </div>
           </div>
 
           <!-- Forma de Pagamento -->
@@ -1387,9 +1411,9 @@
               <div class="flex justify-between items-baseline">
                 <div>
                   <span class="font-heading font-bold text-white text-sm" id="sim-disp-grass">Bermudas Celebration</span>
-                  <p class="text-[11px] text-slate-300" id="sim-disp-grass-sub">60 m² × R$ 25,00/m²</p>
+                  <p class="text-[11px] text-slate-300" id="sim-disp-grass-sub">60 m² × R$ 30,00/m²</p>
                 </div>
-                <span class="font-heading font-black text-white text-base" id="sim-disp-grass-total">R$ 1.500,00</span>
+                <span class="font-heading font-black text-white text-base" id="sim-disp-grass-total">R$ 1.800,00</span>
               </div>
 
               <div class="flex justify-between items-baseline">
@@ -1402,36 +1426,42 @@
 
               <div class="flex justify-between items-baseline">
                 <div>
-                  <span class="font-heading font-bold text-white text-sm">Frete Rodoviário DF</span>
-                  <p class="text-[11px] text-slate-300" id="sim-disp-freight-sub">Park Way (~6 km)</p>
+                  <span class="font-heading font-bold text-white text-sm">Frete Rodoviário (R$ 10/km)</span>
+                  <p class="text-[11px] text-slate-300" id="sim-disp-freight-sub">Informe seu endereço e CEP ao lado</p>
                 </div>
-                <span class="font-heading font-black text-white text-base" id="sim-disp-freight-total">R$ 60,00</span>
+                <span class="font-heading font-black text-white text-base" id="sim-disp-freight-total">A calcular</span>
               </div>
             </div>
 
             <!-- Total e Sinal de 50% -->
             <div class="py-5 space-y-3">
               <div class="flex items-baseline justify-between">
-                <span class="text-xs font-heading font-bold uppercase tracking-wider text-slate-300">Total Estimado:</span>
-                <span class="text-3xl font-heading font-black text-itoGreen-light" id="sim-disp-grand-total">R$ 1.560,00</span>
+                <span class="text-xs font-heading font-bold uppercase tracking-wider text-slate-300">Total do Orçamento:</span>
+                <span class="text-3xl font-heading font-black text-itoGreen-light" id="sim-disp-grand-total">R$ 1.800,00</span>
               </div>
 
               <!-- Regra Oficial de Sinal de 50% -->
               <div class="bg-white/10 p-3 rounded-xl border border-white/15 text-[11px] space-y-1">
                 <div class="flex justify-between text-slate-200">
                   <span>Sinal de 50% para reserva:</span>
-                  <strong class="text-white" id="sim-disp-deposit">R$ 780,00</strong>
+                  <strong class="text-white" id="sim-disp-deposit">R$ 900,00</strong>
                 </div>
                 <div class="flex justify-between text-slate-200">
                   <span>Saldo na entrega / conclusão:</span>
-                  <strong class="text-white" id="sim-disp-balance">R$ 780,00</strong>
+                  <strong class="text-white" id="sim-disp-balance">R$ 900,00</strong>
                 </div>
               </div>
             </div>
 
-            <div class="space-y-1.5 text-xs">
-              <label class="block text-slate-300 font-medium text-[11px]">Seu Nome / Contato:</label>
-              <input type="text" id="sim-client-name" placeholder="Ex: Roberto - Park Way" class="w-full bg-white/10 border border-white/20 rounded-xl p-2.5 text-white placeholder-slate-400 text-xs focus:ring-2 focus:ring-itoGreen-light outline-none">
+            <div class="space-y-2.5 text-xs">
+              <div>
+                <label class="block text-slate-300 font-medium text-[11px] mb-1">Seu Nome Completo:</label>
+                <input type="text" id="sim-client-name" placeholder="Ex: Roberto Silva" class="w-full bg-white/10 border border-white/20 rounded-xl p-2.5 text-white placeholder-slate-400 text-xs focus:ring-2 focus:ring-itoGreen-light outline-none">
+              </div>
+              <div>
+                <label class="block text-slate-300 font-medium text-[11px] mb-1">Seu WhatsApp (com DDD) para receber o atendimento automático:</label>
+                <input type="tel" id="sim-client-phone" placeholder="Ex: (61) 99999-9999" class="w-full bg-white/10 border border-white/20 rounded-xl p-2.5 text-white placeholder-slate-400 text-xs focus:ring-2 focus:ring-itoGreen-light outline-none">
+              </div>
             </div>
 
           </div>

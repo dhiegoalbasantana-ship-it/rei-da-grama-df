@@ -442,16 +442,23 @@ const SPECIES_DATA = {
 const PLANTING_PRICE_PER_M2 = 12; // R$ 12/m² com NPK + calcário
 const FREIGHT_PRICE_PER_KM = 10;  // R$ 10/km rodoviário ida de Brasília
 const WHATSAPP_PHONE = "556193585376"; // Número de WhatsApp oficial do bot conectado na Evolution API
+const GOOGLE_MAPS_KEY = "AIzaSyDf78LjWrKsW5d4xkuORbTM7sWqIR7koVc";
+const STORE_ORIGIN = { latitude: -15.8931, longitude: -47.9622 }; // SMPW Park Way, Brasília - DF
+const N8N_SITE_WEBHOOK = "https://n8n.achadinhosdabella.shop/webhook/site-reidagrama";
 
 // Estado atual
 let currentState = {
   speciesKey: 'bermudas',
   areaM2: 60,
   includePlanting: false,
-  regionKm: 6,
-  regionName: 'Park Way / SMPW',
+  fulfillment: 'delivery',
+  cep: '',
+  address: '',
+  regionKm: null,
+  regionName: '',
   paymentMethod: 'pix',
-  clientName: ''
+  clientName: '',
+  clientPhone: ''
 };
 
 // Formatação Monetária
@@ -659,9 +666,13 @@ function syncCalculatorGrass(key) {
 function initCalculator() {
   const areaInput = document.getElementById('sim-area');
   const plantingCheck = document.getElementById('sim-planting');
-  const regionSelect = document.getElementById('sim-region');
+  const fulfillmentInputs = document.querySelectorAll('input[name="sim-fulfillment"]');
+  const cepInput = document.getElementById('sim-cep');
+  const addressInput = document.getElementById('sim-address');
+  const calcFreightBtn = document.getElementById('sim-btn-calc-freight');
   const payInputs = document.querySelectorAll('input[name="sim-pay"]');
   const clientNameInput = document.getElementById('sim-client-name');
+  const clientPhoneInput = document.getElementById('sim-client-phone');
   const sendBtn = document.getElementById('sim-btn-send');
 
   // Seleção de grama na calculadora
@@ -727,13 +738,83 @@ function initCalculator() {
     });
   }
 
-  // Região DF
-  if (regionSelect) {
-    regionSelect.addEventListener('change', (e) => {
-      const opt = e.target.options[e.target.selectedIndex];
-      currentState.regionKm = parseFloat(opt.getAttribute('data-km')) || 0;
-      currentState.regionName = opt.text.split('(')[0].trim();
+  // Modalidade de Entrega vs Retirada na Base
+  fulfillmentInputs.forEach(input => {
+    input.addEventListener('change', (e) => {
+      currentState.fulfillment = e.target.value;
+      document.querySelectorAll('.sim-fulfillment-card').forEach(label => {
+        const r = label.querySelector('input');
+        if (r && r.checked) {
+          label.classList.add('border-itoGreen', 'bg-itoGreen-soft');
+          label.classList.remove('border-slate-200', 'bg-white');
+        } else {
+          label.classList.remove('border-itoGreen', 'bg-itoGreen-soft');
+          label.classList.add('border-slate-200', 'bg-white');
+        }
+      });
+      const deliveryFields = document.getElementById('sim-delivery-fields');
+      if (deliveryFields) {
+        if (currentState.fulfillment === 'pickup') {
+          deliveryFields.classList.add('hidden');
+        } else {
+          deliveryFields.classList.remove('hidden');
+        }
+      }
       recalculate();
+    });
+  });
+
+  // CEP com busca automática ViaCEP e cálculo automático de rota
+  let routeTimer = null;
+  if (cepInput) {
+    cepInput.addEventListener('input', async (e) => {
+      let digits = e.target.value.replace(/\D/g, '').slice(0, 8);
+      if (digits.length > 5) {
+        e.target.value = digits.slice(0, 5) + '-' + digits.slice(5);
+      } else {
+        e.target.value = digits;
+      }
+      currentState.cep = e.target.value;
+      currentState.regionKm = null;
+      recalculate();
+
+      if (digits.length === 8) {
+        try {
+          const res = await fetch(`https://viacep.com.br/ws/${digits}/json/`);
+          const info = await res.json();
+          if (info && !info.erro) {
+            const parts = [info.logradouro, info.bairro, `${info.localidade} - ${info.uf}`].filter(Boolean);
+            const suggested = parts.join(', ');
+            if (addressInput && (!addressInput.value.trim() || addressInput.dataset.autofilled === 'true')) {
+              addressInput.value = suggested;
+              addressInput.dataset.autofilled = 'true';
+              currentState.address = suggested;
+            }
+          }
+        } catch (err) {}
+        clearTimeout(routeTimer);
+        routeTimer = setTimeout(() => calculateRealRouteFreight(), 300);
+      }
+    });
+  }
+
+  // Endereço Real Aberto
+  if (addressInput) {
+    addressInput.addEventListener('input', (e) => {
+      addressInput.dataset.autofilled = 'false';
+      currentState.address = e.target.value.trim();
+      currentState.regionKm = null;
+      recalculate();
+      clearTimeout(routeTimer);
+      if (currentState.address.length >= 6) {
+        routeTimer = setTimeout(() => calculateRealRouteFreight(), 800);
+      }
+    });
+  }
+
+  if (calcFreightBtn) {
+    calcFreightBtn.addEventListener('click', () => {
+      calculateRealRouteFreight(true);
     });
   }
 
@@ -755,10 +836,15 @@ function initCalculator() {
     });
   });
 
-  // Nome do cliente
+  // Nome e WhatsApp do cliente
   if (clientNameInput) {
     clientNameInput.addEventListener('input', (e) => {
       currentState.clientName = e.target.value.trim();
+    });
+  }
+  if (clientPhoneInput) {
+    clientPhoneInput.addEventListener('input', (e) => {
+      currentState.clientPhone = e.target.value.trim();
     });
   }
 
@@ -768,11 +854,80 @@ function initCalculator() {
   }
 }
 
+// Calcula a distância rodoviária real via Google Geocoding API + Google Routes API
+async function calculateRealRouteFreight(showAlertIfEmpty = false) {
+  const statusEl = document.getElementById('sim-route-status');
+  const addr = (currentState.address || '').trim();
+  const cep = (currentState.cep || '').trim();
+
+  if (!addr && !cep) {
+    if (showAlertIfEmpty && statusEl) {
+      statusEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-amber-600"></i> <span class="text-amber-700 font-bold">Digite seu CEP e endereço completo acima para calcular o frete.</span>`;
+    }
+    return null;
+  }
+
+  const query = [addr, cep ? `CEP ${cep}` : '', 'Brasil'].filter(Boolean).join(', ');
+  if (statusEl) {
+    statusEl.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-itoGreen"></i> <span class="text-itoBlue font-semibold">Calculando rota rodoviária exata pelo Google Maps...</span>`;
+  }
+
+  try {
+    const geoRes = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(query)}&region=br&language=pt-BR&key=${GOOGLE_MAPS_KEY}`);
+    const geoData = await geoRes.json();
+    const first = geoData.results && geoData.results[0];
+    const loc = first?.geometry?.location;
+
+    if (!loc) {
+      if (statusEl) {
+        statusEl.innerHTML = `<i class="fa-solid fa-circle-info text-amber-600"></i> <span>Endereço anotado! O Rei confirmará a quilometragem exata no WhatsApp.</span>`;
+      }
+      return null;
+    }
+
+    const routeRes = await fetch('https://routes.googleapis.com/directions/v2:computeRoutes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Goog-Api-Key': GOOGLE_MAPS_KEY,
+        'X-Goog-FieldMask': 'routes.distanceMeters,routes.duration'
+      },
+      body: JSON.stringify({
+        origin: { location: { latLng: STORE_ORIGIN } },
+        destination: { location: { latLng: { latitude: loc.lat, longitude: loc.lng } } },
+        travelMode: 'DRIVE'
+      })
+    });
+    const routeData = await routeRes.json();
+    const meters = routeData?.routes?.[0]?.distanceMeters;
+
+    if (typeof meters === 'number' && meters > 0) {
+      const km = Math.round((meters / 1000) * 100) / 100;
+      currentState.regionKm = km;
+      currentState.regionName = first.formatted_address || addr;
+      const freightVal = km * FREIGHT_PRICE_PER_KM;
+      if (statusEl) {
+        statusEl.innerHTML = `<i class="fa-solid fa-circle-check text-itoGreen"></i> <span class="text-itoGreen-dark font-bold">Rota calculada: ${km.toLocaleString('pt-BR')} km (${toBRL(freightVal)})</span>`;
+      }
+      recalculate();
+      return km;
+    }
+  } catch (err) {
+    console.error('Erro ao calcular rota:', err);
+  }
+
+  if (statusEl) {
+    statusEl.innerHTML = `<i class="fa-solid fa-circle-info text-itoBlue"></i> <span>Endereço registrado. O frete exato será validado no atendimento.</span>`;
+  }
+  return null;
+}
+
 // Recalcular Valores
 function recalculate() {
   const data = SPECIES_DATA[currentState.speciesKey];
   const area = currentState.areaM2;
   const isCredit = currentState.paymentMethod === 'credit';
+  const isPickup = currentState.fulfillment === 'pickup';
 
   // Alerta de atacado >= 300 m²
   const alertEl = document.getElementById('sim-bulk-alert');
@@ -788,7 +943,9 @@ function recalculate() {
   const unitGrassPrice = isCredit ? data.priceCredit : data.priceCash;
   const totalGrass = area * unitGrassPrice;
   const totalPlanting = currentState.includePlanting ? (area * PLANTING_PRICE_PER_M2) : 0;
-  const totalFreight = currentState.regionKm * FREIGHT_PRICE_PER_KM;
+  const hasKm = isPickup ? true : (typeof currentState.regionKm === 'number' && currentState.regionKm >= 0);
+  const effectiveKm = isPickup ? 0 : (hasKm ? currentState.regionKm : 0);
+  const totalFreight = effectiveKm * FREIGHT_PRICE_PER_KM;
   const grandTotal = totalGrass + totalPlanting + totalFreight;
   const deposit50 = grandTotal * 0.5;
 
@@ -817,46 +974,117 @@ function recalculate() {
   if (elDispPlantingTotal) elDispPlantingTotal.textContent = toBRL(totalPlanting);
 
   if (elDispFreightSub) {
-    elDispFreightSub.textContent = currentState.regionKm === 0 ? 'Retirada na loja em Brasília' : `${currentState.regionName} (~${currentState.regionKm} km)`;
+    if (isPickup) {
+      elDispFreightSub.textContent = 'Retirada na base em Brasília (Park Way)';
+    } else if (hasKm) {
+      elDispFreightSub.textContent = `Rota GPS: ${effectiveKm.toLocaleString('pt-BR')} km × R$ 10/km`;
+    } else {
+      elDispFreightSub.textContent = 'Preencha seu endereço e CEP para calcular';
+    }
   }
-  if (elDispFreightTotal) elDispFreightTotal.textContent = toBRL(totalFreight);
+  if (elDispFreightTotal) {
+    elDispFreightTotal.textContent = isPickup ? 'R$ 0,00' : (hasKm ? toBRL(totalFreight) : 'A calcular');
+  }
 
   if (elDispGrandTotal) elDispGrandTotal.textContent = toBRL(grandTotal);
   if (elDispDeposit) elDispDeposit.textContent = toBRL(deposit50);
   if (elDispBalance) elDispBalance.textContent = toBRL(deposit50);
 }
 
-// Enviar Pedido formatado para o WhatsApp do Rei e persistir no Supabase
+// Enviar Pedido formatado para o WhatsApp do Rei, acionar bot automaticamente e persistir no Supabase
 async function sendOrderToWhatsApp() {
   const data = SPECIES_DATA[currentState.speciesKey];
   const area = currentState.areaM2;
   const isCredit = currentState.paymentMethod === 'credit';
+  const isPickup = currentState.fulfillment === 'pickup';
+
+  const cepInput = document.getElementById('sim-cep');
+  const addressInput = document.getElementById('sim-address');
+  if (cepInput) currentState.cep = cepInput.value.trim();
+  if (addressInput) currentState.address = addressInput.value.trim();
+
+  if (!isPickup && !currentState.address && !currentState.cep) {
+    alert('Por favor, preencha o seu Endereço completo de entrega e o CEP no item 4 antes de enviar o orçamento.');
+    if (addressInput) addressInput.focus();
+    return;
+  }
+
+  const sendBtn = document.getElementById('sim-btn-send');
+  const origBtnHtml = sendBtn ? sendBtn.innerHTML : '';
+  if (sendBtn) {
+    sendBtn.disabled = true;
+    sendBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-lg"></i> <span>Calculando e Enviando para o Rei...</span>`;
+  }
+
+  if (!isPickup && typeof currentState.regionKm !== 'number') {
+    await calculateRealRouteFreight(false);
+  }
+
   const unitGrassPrice = isCredit ? data.priceCredit : data.priceCash;
   const totalGrass = area * unitGrassPrice;
   const totalPlanting = currentState.includePlanting ? (area * PLANTING_PRICE_PER_M2) : 0;
-  const totalFreight = currentState.regionKm * FREIGHT_PRICE_PER_KM;
+  const hasKm = isPickup ? true : (typeof currentState.regionKm === 'number' && currentState.regionKm >= 0);
+  const effectiveKm = isPickup ? 0 : (hasKm ? currentState.regionKm : 0);
+  const totalFreight = effectiveKm * FREIGHT_PRICE_PER_KM;
   const grandTotal = totalGrass + totalPlanting + totalFreight;
   const deposit50 = grandTotal * 0.5;
+  const fullAddress = isPickup
+    ? 'Retirada na base DF (Park Way / SMPW)'
+    : [currentState.address, currentState.cep ? `CEP: ${currentState.cep}` : ''].filter(Boolean).join(' - ');
 
   // Persiste no Supabase caso configurado
   let quoteId = null;
   if (typeof window.saveQuoteToSupabase === 'function') {
-    quoteId = await window.saveQuoteToSupabase({
-      clientName: currentState.clientName,
-      speciesKey: currentState.speciesKey,
-      speciesName: data.name,
-      areaM2: area,
-      unitGrassPrice: unitGrassPrice,
-      grassTotal: totalGrass,
-      includePlanting: currentState.includePlanting,
-      plantingTotal: totalPlanting,
-      regionName: currentState.regionName,
-      regionKm: currentState.regionKm,
-      freightTotal: totalFreight,
-      paymentMethod: isCredit ? 'credit' : 'pix',
-      grandTotal: grandTotal,
-      deposit50: deposit50
-    });
+    try {
+      quoteId = await window.saveQuoteToSupabase({
+        clientName: currentState.clientName,
+        speciesKey: currentState.speciesKey,
+        speciesName: data.name,
+        areaM2: area,
+        unitGrassPrice: unitGrassPrice,
+        grassTotal: totalGrass,
+        includePlanting: currentState.includePlanting,
+        plantingTotal: totalPlanting,
+        regionName: fullAddress,
+        regionKm: effectiveKm,
+        freightTotal: totalFreight,
+        paymentMethod: isCredit ? 'credit' : 'pix',
+        grandTotal: grandTotal,
+        deposit50: deposit50
+      });
+    } catch (e) {}
+  }
+
+  // Dispara automaticamente para o Webhook do Bot no n8n caso o cliente tenha informado o WhatsApp
+  const cleanPhone = (currentState.clientPhone || '').replace(/\D/g, '');
+  if (cleanPhone.length >= 10) {
+    const formattedPhone = cleanPhone.startsWith('55') ? cleanPhone : `55${cleanPhone}`;
+    try {
+      fetch(N8N_SITE_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'site_reidagrama',
+          clientName: currentState.clientName || 'Cliente',
+          clientPhone: formattedPhone,
+          speciesKey: currentState.speciesKey,
+          speciesName: data.name,
+          areaM2: area,
+          includePlanting: currentState.includePlanting,
+          fulfillment: currentState.fulfillment,
+          cep: currentState.cep,
+          address: currentState.address,
+          fullAddress,
+          freightKm: hasKm ? effectiveKm : null,
+          freightTotal: hasKm ? totalFreight : null,
+          paymentMethod: isCredit ? 'credit' : 'pix',
+          grassTotal: totalGrass,
+          plantingTotal: totalPlanting,
+          grandTotal,
+          deposit50
+        })
+      }).catch(() => {});
+    } catch (e) {}
   }
 
   let msg = `🌱👑 *ORÇAMENTO - REI DA GRAMA DF*\n`;
@@ -867,15 +1095,31 @@ async function sendOrderToWhatsApp() {
   if (currentState.clientName) {
     msg += `👤 *Cliente:* ${currentState.clientName}\n`;
   }
+  if (currentState.clientPhone) {
+    msg += `📱 *WhatsApp:* ${currentState.clientPhone}\n`;
+  }
   msg += `🌿 *Variedade:* ${data.name}\n`;
   msg += `📐 *Metragem:* ${area} m²\n`;
   msg += `💳 *Forma de Pagamento:* ${isCredit ? 'Cartão de Crédito' : 'Pix / Débito'}\n`;
   msg += `💲 *Grama:* ${toBRL(totalGrass)}\n`;
   msg += `🚜 *Plantio Especializado:* ${currentState.includePlanting ? `Sim (${toBRL(totalPlanting)} com adubo NPK + calcário)` : 'Não solicitado'}\n`;
-  msg += `📍 *Entrega:* ${currentState.regionKm === 0 ? 'Retirada na base DF' : `${currentState.regionName} (~${currentState.regionKm} km) - ${toBRL(totalFreight)}`}\n`;
+  if (isPickup) {
+    msg += `📍 *Modalidade:* Retirada na base DF (Sem frete)\n`;
+  } else {
+    msg += `📍 *Endereço de Entrega:* ${currentState.address || 'Não informado'}\n`;
+    msg += `📮 *CEP:* ${currentState.cep || 'Não informado'}\n`;
+    if (hasKm) {
+      msg += `🚚 *Frete Rodoviário GPS:* ${effectiveKm.toLocaleString('pt-BR')} km (${toBRL(totalFreight)})\n`;
+    }
+  }
   msg += `\n💰 *VALOR TOTAL:* ${toBRL(grandTotal)}\n`;
-  msg += `🛡️ *Sinal de Reserva (50% Pix):* ${toBRL(deposit50)}\n`;
-  msg += `\nGostaria de confirmar a data de entrega em Brasília!`;
+  msg += `🛡️ *Sinal de Reserva (50% ${isCredit ? 'Cartão' : 'Pix'}):* ${toBRL(deposit50)}\n`;
+  msg += `\nQuero confirmar meu pedido com esses dados!`;
+
+  if (sendBtn) {
+    sendBtn.disabled = false;
+    sendBtn.innerHTML = origBtnHtml;
+  }
 
   const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`;
   window.open(url, '_blank');
