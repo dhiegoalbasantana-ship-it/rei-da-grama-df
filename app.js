@@ -24,8 +24,8 @@ const SPECIES_DATA = {
     color: 'Verde Azulado Vibrante',
     leaf: 'Fina',
     usage: 'Campos Esportivos, Society & Residências com Pets',
-    priceCash: 25,
-    priceCredit: 27,
+    priceCash: 30,
+    priceCredit: 32,
 
     // 6 Vantagens e Desempenho Comprovado
     benefits: [
@@ -98,8 +98,8 @@ const SPECIES_DATA = {
     color: 'Verde Esmeralda Brilhante',
     leaf: 'Fina e Macia',
     usage: 'Jardins Residenciais, Condomínios e Encostas Suaves',
-    priceCash: 15,
-    priceCredit: 17,
+    priceCash: 18,
+    priceCredit: 20,
 
     benefits: [
       {
@@ -441,7 +441,7 @@ const SPECIES_DATA = {
 
 const PLANTING_PRICE_PER_M2 = 12; // R$ 12/m² com NPK + calcário
 const FREIGHT_PRICE_PER_KM = 10;  // R$ 10/km rodoviário ida de Brasília
-const WHATSAPP_PHONE = "5561993585376"; // Número de WhatsApp oficial do bot
+const WHATSAPP_PHONE = "556193585376"; // Número de WhatsApp oficial do bot conectado na Evolution API
 
 // Estado atual
 let currentState = {
